@@ -11,12 +11,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Login to Azure Container Registry
-      uses: azure/docker-login@v1
-      with:
-        login-server: ТВОЙ_РЕГИСТР.azurecr.io
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+    - name: Direct Docker Login
+      run: docker login aquacoreregistry2026.azurecr.io -u aquacoreregistry2026 -p ${{ secrets.ACR_PASSWORD }}
 
     - name: Build and push Docker image
       run: |
